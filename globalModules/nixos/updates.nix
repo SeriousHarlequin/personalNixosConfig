@@ -27,5 +27,15 @@ in
         "--update-input" "home-manager"
       ];
     };
+
+    # deletes all generations older than 30d
+    nix.gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+
+    # This finds duplicate files in the store and hard-links them to save space
+    nix.settings.auto-optimise-store = true;
   };
 }
