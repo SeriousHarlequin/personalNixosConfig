@@ -25,7 +25,6 @@ in
       flags = [
         "--update-input" "nixpkgs"
         "--update-input" "home-manager"
-        "--commit-lock-file" # Only works if /etc/nixos is a local Git repo
       ];
     };
   };
