@@ -18,14 +18,15 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    systemd.timers.my-autoupdate = {
-      timerConfig = {
-        # NixOS will automatically handle converting a list or string 
-        # into the correct systemd unit format here.
-        OnCalendar = cfg.dates;
-        Persistent = true;
-      };
-      wantedBy = [ "timers.target" ];
+    system.autoUpgrade = {
+      enable = true;
+      dates = cfg.dates;
+      flake = "github:SeriousHarlequin/personalNixosConfig#${config.networking.hostName}";
+      flags = [
+        "--update-input" "nixpkgs"
+        "--update-input" "home-manager"
+        "--commit-lock-file" # Only works if /etc/nixos is a local Git repo
+      ];
     };
   };
 }
