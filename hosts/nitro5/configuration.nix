@@ -1,0 +1,97 @@
+{ config, pkgs, ... }:
+
+{
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      ../../globalModules/nixos/stylix.nix
+      ../../globalModules/nixos/nvidia.nix
+      ../../globalModules/nixos/gaming.nix
+      ../../globalModules/nixos/locale.nix
+      ../../globalModules/nixos/networking.nix
+      ../../globalModules/nixos/libreoffice.nix
+      ../../globalModules/nixos/updates.nix
+    ];
+
+  myNixos = {
+    nvidia = {
+      enable = true;
+      hybrid.enable = true;
+    };
+
+    gaming = {
+      steam.enable = true;
+      steam.gamescope.enable = true;
+    };
+
+    libreoffice.enable = true;
+
+    autoUpdate = {
+      enable = true;
+      dates = "weekly";
+    };
+  };
+
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+
+  # Enable the GNOME Desktop Environment.
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  # Enable sound with pipewire.
+  services.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+
+  };
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.xserver.libinput.enable = true;
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.fabian = {
+    isNormalUser = true;
+    description = "Fabian Schaetzschock";
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [
+    #  thunderbird
+    ];
+  };
+
+  # Install firefox.
+  programs.firefox.enable = true;
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    wget
+    neovim
+    lf
+    git
+    tree
+
+    thunderbird
+  ];
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  system.stateVersion = "25.11";
+
+}
