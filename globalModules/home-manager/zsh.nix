@@ -16,7 +16,7 @@ in
 
       shellAliases = {
         ll = "ls -l";
-        update = "sudo nixos-rebuild switch --flake";
+        update = "sudo nixos-rebuild switch --flake /home/fabian/dotfiles";
       };
       history.size = 10000;
 
@@ -26,9 +26,10 @@ in
           "git"
           "web-search"
         ];
-        theme = "robbyrussell";
+        theme = "bira";
       };
     };
+
     programs.pay-respects = {
       enable = true;
       enableZshIntegration = true;
