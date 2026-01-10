@@ -4,5 +4,6 @@
     ./neovim/default.nix
     ./ghostty.nix
     ./zoxide.nix
+    ./zsh.nix
   ];
 }
