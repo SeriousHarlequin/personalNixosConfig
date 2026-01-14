@@ -4,13 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../globalModules/nixos/stylix.nix
-      ../../globalModules/nixos/nvidia.nix
-      ../../globalModules/nixos/gaming.nix
-      ../../globalModules/nixos/locale.nix
-      ../../globalModules/nixos/networking.nix
-      ../../globalModules/nixos/libreoffice.nix
-      ../../globalModules/nixos/updates.nix
+      ../../globalModules/nixos/default.nix
     ];
 
   myNixos = {
