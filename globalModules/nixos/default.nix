@@ -9,6 +9,7 @@
             ./networking.nix
             ./libreoffice.nix
             ./updates.nix
+            ./desktop-environments.nix
         ];
 }
 

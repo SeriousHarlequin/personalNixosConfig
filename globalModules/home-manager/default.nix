@@ -5,5 +5,6 @@
     ./ghostty.nix
     ./zoxide.nix
     ./zsh.nix
+    ./niri/default.nix
   ];
 }

@@ -17,5 +17,6 @@
     ghostty.enable = true;
     zoxide.enable = true;
     zsh.enable = true;
+    niri.enable = true;
   };
 }
