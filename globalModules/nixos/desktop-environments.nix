@@ -25,7 +25,12 @@ in
             security.pam.services.swaylock = {};
 
             programs.waybar.enable = true; # top bar
-            environment.systemPackages = with pkgs; [ fuzzel swaylock mako swayidle ];
+            environment.systemPackages = with pkgs; [ fuzzel swaylock mako swayidle xwayland-satellite];
+
+            fonts.packages = with pkgs; [
+                nerd-fonts.jetbrains-mono
+                nerd-fonts.symbols-only # Optional: if you want icons separate from text
+            ];
         })
     ];
 

@@ -8,6 +8,6 @@ in
     };
 
     config = lib.mkIf cfg.enable {
-        xdg.configFile."./config.kdl".source = ./config.kdl;
+        xdg.configFile."niri/config.kdl".source = ./config.kdl;
     };
 }

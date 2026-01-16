@@ -17,7 +17,7 @@ in
       theme = Dracula
       font-family = "JetBrainsMono Nerd Font"
       font-size = 12
-      fullscreen = true
+      # fullscreen = true
 
       # Window styling
       window-decoration = false
