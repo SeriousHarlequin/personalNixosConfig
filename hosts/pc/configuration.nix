@@ -10,12 +10,12 @@
   myNixos = {
     nvidia = {
       enable = true;
-      hybrid.enable = true;
+      hybrid.enable = false;
     };
 
     gaming = {
       steam.enable = true;
-      steam.gamescope.enable = true;
+      steam.gamescope.enable = false;
     };
 
     libreoffice.enable = true;
@@ -25,10 +25,10 @@
       dates = "weekly";
     };
 
-    desktopEnvironments.enableList = [ "gnome" "niri" ];
+    desktopEnvironments.enableList = [ "niri" ]; # "gnome"
   };
   
-  networking.hostName = "nitro5"; # Define your hostname.
+  networking.hostName = "pc"; # Define your hostname.
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -56,7 +56,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
+  services.libinput.enable = false;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.fabian = {
