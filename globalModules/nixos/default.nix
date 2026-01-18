@@ -7,7 +7,8 @@
             ./gaming.nix
             ./locale.nix
             ./networking.nix
-            ./libreoffice.nix
+            ./software/cli-tools.nix
+            ./software/libreoffice.nix
             ./updates.nix
             ./desktop-environments.nix
         ];

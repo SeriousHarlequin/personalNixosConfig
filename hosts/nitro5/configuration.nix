@@ -18,7 +18,10 @@
       steam.gamescope.enable = true;
     };
 
-    libreoffice.enable = true;
+    software = {
+        cli-tools.enable = true;
+        libreoffice.enable = true;
+    };
 
     autoUpdate = {
       enable = true;
@@ -81,12 +84,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wget
-    neovim
-    lf
-    git
-    tree
-
     thunderbird
   ];
 

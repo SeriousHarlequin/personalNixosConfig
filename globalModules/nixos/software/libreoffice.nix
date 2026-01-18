@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.myNixos.libreoffice;
+  cfg = config.myNixos.software.libreoffice;
 in
 {
-  options.myNixos.libreoffice = {
+  options.myNixos.software.libreoffice = {
     enable = lib.mkEnableOption "Enable the libreoffice suit";
   };
 

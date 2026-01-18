@@ -18,14 +18,17 @@
       steam.gamescope.enable = false;
     };
 
-    libreoffice.enable = true;
+    software = {
+        cli-tools.enable = true;
+        libreoffice.enable = true;
+    };
 
     autoUpdate = {
       enable = true;
       dates = "weekly";
     };
 
-    desktopEnvironments.enableList = [ "niri" ]; # "gnome"
+    desktopEnvironments.enableList = [ "gnome" "niri" ];
   };
   
   networking.hostName = "pc"; # Define your hostname.
@@ -81,13 +84,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wget
-    neovim
-    lf
-    git
-    tree
-
     thunderbird
+    discord
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
