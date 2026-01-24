@@ -17,7 +17,7 @@ in
 
       hardware.nvidia = {
         modesetting.enable = true;
-        powerManagement.enable = true;
+        # powerManagement.enable = true;
 
         open = true; # Changed to true since you have a 1660Ti (Turing)
         nvidiaSettings = true;
@@ -28,7 +28,7 @@ in
     # Hybrid/PRIME specific Configuration
     (lib.mkIf cfg.hybrid.enable {
       hardware.nvidia = {
-        powerManagement.finegrained = true;
+        # powerManagement.finegrained = true;
         
         prime = {
           offload = {
