@@ -5,13 +5,14 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    niri.url = "github:sodiboo/niri-flake";
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, home-manager, stylix, ... } @ inputs: {
+  outputs = { nixpkgs, home-manager, stylix, niri, ... } @ inputs: {
   
     # Laptop
     nixosConfigurations.nitro5 = nixpkgs.lib.nixosSystem {
@@ -21,6 +22,7 @@
 	home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users.fabian = ./hosts/nitro5/users/fabian.nix;
 	}
         stylix.nixosModules.stylix
@@ -35,6 +37,7 @@
 	home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users.fabian = ./hosts/pc/users/fabian.nix;
 	}
         stylix.nixosModules.stylix
