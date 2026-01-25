@@ -8,5 +8,6 @@
     ./niri/default.nix
     ./waybar.nix
     ./swaylock.nix
+    ./swayidle.nix
   ];
 }

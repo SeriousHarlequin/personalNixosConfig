@@ -23,12 +23,6 @@ in
                 indicator-thickness = 10;
                 line-uses-ring = true;
                 
-                # Catppuccin-style Palette
-                #ring-color = "89b4fa";      # Blue
-                #key-hl-color = "f5c2e7";    # Pink
-                #bs-hl-color = "f38ba8";     # Red
-                #text-color = "cdd6f4";      # Text
-                
                 # Swaylock-effects Specific
                 screenshots = true;
                 clock = true;
