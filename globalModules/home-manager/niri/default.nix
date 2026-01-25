@@ -46,6 +46,7 @@ in
                 "Mod+Shift+7".action = show-hotkey-overlay;
                 "Mod+T".action = spawn "ghostty";
                 "Mod+D".action = spawn "fuzzel";
+                "Mod+W".action = spawn "firefox";
                 "Mod+Q".action = close-window;
 
                 "Mod+Shift+E".action = quit;
@@ -62,12 +63,32 @@ in
                 "Mod+K".action = focus-window-up;
                 "Mod+J".action = focus-window-down;
 
+                "Mod+Alt+Left".action = focus-monitor-left;
+                "Mod+Alt+Right".action = focus-monitor-right;
+                "Mod+Alt+Up".action = focus-monitor-up;
+                "Mod+Alt+Down".action = focus-monitor-down;
+
+                "Mod+Alt+H".action = focus-monitor-left;
+                "Mod+Alt+L".action = focus-monitor-right;
+                "Mod+Alt+K".action = focus-monitor-up;
+                "Mod+Alt+J".action = focus-monitor-down;
+
                 # Window Manipulation
                 "Mod+Shift+Left".action = move-column-left;
                 "Mod+Shift+Right".action = move-column-right;
 
                 "Mod+Shift+H".action = move-column-left;
                 "Mod+Shift+L".action = move-column-right;
+
+                "Mod+Alt+Shift+Left".action = move-column-to-monitor-left;
+                "Mod+Alt+Shift+Right".action = move-column-to-monitor-right;
+                "Mod+Alt+Shift+Up".action = move-column-to-monitor-up;
+                "Mod+Alt+Shift+Down".action = move-column-to-monitor-down;
+
+                "Mod+Alt+Shift+H".action = move-column-to-monitor-left;
+                "Mod+Alt+Shift+L".action = move-column-to-monitor-right;
+                "Mod+Alt+Shift+K".action = move-column-to-monitor-up;
+                "Mod+Alt+Shift+J".action = move-column-to-monitor-down;
 
                 "Mod+R".action = switch-preset-column-width;
                 "Mod+F".action = maximize-column;
@@ -100,8 +121,8 @@ in
 
                 # Screenshot
                 "Print".action.screenshot = { };
-                "Print+Shift".action.screenshot-screen = { };
-                "Print+Alt".action.screenshot-window = { };
+                #"Print+Shift".action.screenshot-screen = { };
+                #"Print+Alt".action.screenshot-window = { };
 
 
             };
@@ -109,8 +130,8 @@ in
             # 4. Window Rules
             window-rules = [
                 {
-                    matches = [{ app-id = "firefox"; }];
-                    open-maximized = true;
+                    #matches = [{ app-id = "firefox"; }];
+                    #open-maximized = true;
                 }
             ];
         };

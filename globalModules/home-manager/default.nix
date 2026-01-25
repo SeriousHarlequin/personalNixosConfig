@@ -6,5 +6,6 @@
     ./zoxide.nix
     ./zsh.nix
     ./niri/default.nix
+    ./waybar.nix
   ];
 }
