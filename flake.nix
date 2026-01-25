@@ -18,11 +18,12 @@
       specialArgs = {inherit inputs; }; #allows configuration.nix to access inputs
       modules = [
         ./hosts/nitro5/configuration.nix
-	home-manager.nixosModules.home-manager {
+	    home-manager.nixosModules.home-manager
+        {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.fabian = ./hosts/nitro5/users/fabian.nix;
-	}
+	    }
         stylix.nixosModules.stylix
       ];
     };
@@ -32,11 +33,12 @@
       specialArgs = {inherit inputs; }; #allows configuration.nix to access inputs
       modules = [
         ./hosts/pc/configuration.nix
-	home-manager.nixosModules.home-manager {
+	    home-manager.nixosModules.home-manager
+        {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.fabian = ./hosts/pc/users/fabian.nix;
-	}
+	    }
         stylix.nixosModules.stylix
       ];
     };
