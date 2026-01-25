@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
   imports = [
     ./neovim/default.nix
@@ -6,5 +6,6 @@
     ./zoxide.nix
     ./zsh.nix
     ./niri/default.nix
+    ./waybar.nix
   ];
 }

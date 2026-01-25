@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   home.username = "fabian";
@@ -18,6 +18,7 @@
     zoxide.enable = true;
     zsh.enable = true;
     niri.enable = true;
+    waybar.enable = true;
   };
 
 }
