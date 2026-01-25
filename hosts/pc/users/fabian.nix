@@ -11,6 +11,7 @@
   
   imports = [
     ../../../globalModules/home-manager/default.nix
+    ./niri-monitor-setup.nix
   ];
 
   myHome = {
@@ -18,5 +19,6 @@
     zoxide.enable = true;
     zsh.enable = true;
     niri.enable = true;
+    waybar.enable = true;
   };
 }
