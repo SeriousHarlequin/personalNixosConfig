@@ -51,6 +51,7 @@ in
 
                 "Mod+Shift+E".action = quit;
                 "Mod+Shift+P".action = power-off-monitors;
+                "Mod+Escape".action = spawn "swaylock";
 
                 # Window Navigation
                 "Mod+Left".action = focus-column-left;

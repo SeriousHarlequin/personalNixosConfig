@@ -20,5 +20,6 @@
     zsh.enable = true;
     niri.enable = true;
     waybar.enable = true;
+    swaylock.enable = true;
   };
 }
