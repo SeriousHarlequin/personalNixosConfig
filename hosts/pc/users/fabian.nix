@@ -22,5 +22,7 @@
     waybar.enable = true;
     swaylock.enable = true;
     swayidle.enable = true;
+    swaynv.enable = true;
+    fuzzel.enable = true;
   };
 }

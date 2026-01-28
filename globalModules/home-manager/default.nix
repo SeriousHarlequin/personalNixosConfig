@@ -9,5 +9,7 @@
     ./waybar.nix
     ./swaylock.nix
     ./swayidle.nix
+    ./swaync.nix
+    ./fuzzel.nix
   ];
 }

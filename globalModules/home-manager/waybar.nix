@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 let
     cfg = config.myHome.waybar;
+    swaync-client = "${pkgs.swaynotificationcenter}/bin/swaync-client";
 in
 {
     options.myHome.waybar = {
@@ -19,7 +20,7 @@ in
                     
                     modules-left = [ "niri/window" ];
                     modules-center = [ "clock" ];
-                    modules-right = [ "cpu" "memory" "pulseaudio" "network" "tray" ];
+                    modules-right = [ "cpu" "memory" "pulseaudio" "network" "custom/notification" "tray" ];
 
                     "niri/window" = {
                         format = "{}";
@@ -29,6 +30,24 @@ in
                     "clock" = {
                         format = "{:%H:%M | %a, %d %b}";
                         tooltip-format = "<tt><small>{calendar}</small></tt>";
+                    };
+
+                    "custom/notification" = {
+                        tooltip = false;
+                        format = "{icon}";
+                        format-icons = {
+                            notification = "<span foreground='red'><sup></sup></span>";
+                            none = "";
+                            dnd-notification = "<span foreground='red'><sup></sup></span>";
+                            dnd-none = "";
+                            inhibited = "";
+                        };
+                        return-type = "json";
+                        exec-if = "which swaync-client";
+                        exec = "${swaync-client} -swb";
+                        on-click = "${swaync-client} -t -sw";
+                        on-click-right = "${swaync-client} -d -sw";
+                        escape = true;
                     };
 
                     "cpu" = {
@@ -54,6 +73,7 @@ in
                         format-wifi = "  {essid}";
                         format-ethernet = "󰈀  {ifname}";
                         format-disconnected = "⚠ Disconnected";
+                        on-click = "${pkgs.networkmanager_dmenu}/bin/networkmanager_dmenu";
                     };
 
                     "tray" = {
@@ -74,9 +94,13 @@ in
                 window#waybar {
                 }
 
-                #clock, #cpu, #memory, #pulseaudio, #network, #tray {
+                #clock, #cpu, #memory, #pulseaudio, #network, #custom-notification #tray {
                     padding: 0 10px;
                     margin: 0 4px;
+                }
+
+                #custom-notification {
+                    font-size: 16px;
                 }
             '';
         };
