@@ -21,6 +21,7 @@
     software = {
         cli-tools.enable = true;
         libreoffice.enable = true;
+        virt-manager.enable = true;
     };
 
     autoUpdate = {
@@ -32,6 +33,9 @@
   };
   
   networking.hostName = "nitro5"; # Define your hostname.
+
+  # Add user to virtualization group
+  users.groups.libvirtd.members = ["fabian"];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

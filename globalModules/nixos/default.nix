@@ -11,6 +11,7 @@
             ./software/libreoffice.nix
             ./updates.nix
             ./desktop-environments.nix
+            ./virt-manager.nix
         ];
 }
 
