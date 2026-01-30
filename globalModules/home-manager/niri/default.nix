@@ -25,6 +25,10 @@ in
                 };
             };
 
+            spawn-at-startup = [
+                { command = [ "${pkgs.swaybg}/bin/swaybg" "-i" "${config.stylix.image}" "-m" "fill" ]; }
+            ];
+
             # 2. Layout & Styling
             # Stylix will automatically inject colors into 'focus-ring' 
             # and 'border' unless you override them here.

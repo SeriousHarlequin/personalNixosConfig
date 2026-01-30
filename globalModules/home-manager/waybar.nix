@@ -20,7 +20,7 @@ in
                     
                     modules-left = [ "niri/window" ];
                     modules-center = [ "clock" ];
-                    modules-right = [ "cpu" "memory" "pulseaudio" "network" "custom/notification" "tray" ];
+                    modules-right = [ "cpu" "memory" "pulseaudio" "network" "battery" "custom/notification" "tray" ];
 
                     "niri/window" = {
                         format = "{}";
@@ -30,6 +30,18 @@ in
                     "clock" = {
                         format = "{:%H:%M | %a, %d %b}";
                         tooltip-format = "<tt><small>{calendar}</small></tt>";
+                    };
+
+                    "battery" = {
+                        states = {
+                            warning = 30;
+                            critical = 15;
+                        };
+                        format = "{icon} {capacity}%";
+                        format-charging = " {capacity}%";
+                        format-plugged = " {capacity}%";
+                        format-alt = "{icon} {time}";
+                        format-icons = [ "" "" "" "" "" ];
                     };
 
                     "custom/notification" = {
@@ -82,7 +94,6 @@ in
                 };
             };
 
-            # Styling the bar with CSS
             style = ''
                 * {
                     font-family: "JetBrainsMono Nerd Font";
@@ -92,9 +103,17 @@ in
                 }
 
                 window#waybar {
+                    background-color: rgba(0, 0, 0, 0); /* Transparent bar background */
                 }
 
-                #clock, #cpu, #memory, #pulseaudio, #network, #custom-notification #tray {
+                #clock, 
+                #cpu, 
+                #memory, 
+                #pulseaudio, 
+                #network, 
+                #battery, 
+                #custom-notification, 
+                #tray {
                     padding: 0 10px;
                     margin: 0 4px;
                 }
