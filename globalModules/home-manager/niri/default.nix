@@ -35,6 +35,7 @@ in
             layout = {
                 gaps = 12;
                 center-focused-column = "never";
+
                 preset-column-widths = [
                     { proportion = 1.0 / 3.0; }
                     { proportion = 1.0 / 2.0; }
@@ -52,6 +53,9 @@ in
                 "Mod+D".action = spawn "fuzzel";
                 "Mod+W".action = spawn "firefox";
                 "Mod+Q".action = close-window;
+                "Mod+E".action = spawn "nautilus";
+                "Mod+N".action = spawn "networkmanager_dmenu";
+                "Mod+M".action.spawn = [ "ghostty" "-e" "btop" ];
 
                 "Mod+Shift+E".action = quit;
                 "Mod+Shift+P".action = power-off-monitors;
@@ -135,6 +139,13 @@ in
             # 4. Window Rules
             window-rules = [
                 {
+                    geometry-corner-radius = {
+                        bottom-left = 12.0;
+                        bottom-right = 12.0;
+                        top-left = 12.0;
+                        top-right = 12.0;
+                    };
+                    clip-to-geometry = true;
                     #matches = [{ app-id = "firefox"; }];
                     #open-maximized = true;
                 }
