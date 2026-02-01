@@ -89,6 +89,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     thunderbird
+    pavucontrol
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

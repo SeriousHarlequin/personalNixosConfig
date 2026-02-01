@@ -90,6 +90,7 @@
   environment.systemPackages = with pkgs; [
     thunderbird
     discord
+    pavucontrol
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

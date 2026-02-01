@@ -56,6 +56,7 @@ in
                 "Mod+E".action = spawn "nautilus";
                 "Mod+N".action = spawn "networkmanager_dmenu";
                 "Mod+M".action.spawn = [ "ghostty" "-e" "btop" ];
+                "Mod+S".action = spawn "pavucontrol";
 
                 "Mod+Shift+E".action = quit;
                 "Mod+Shift+P".action = power-off-monitors;
@@ -148,6 +149,16 @@ in
                     clip-to-geometry = true;
                     #matches = [{ app-id = "firefox"; }];
                     #open-maximized = true;
+                }
+
+                # Pavucontrol
+                {
+                    matches = [{ app-id = "org.pulseaudio.pavucontrol"; }];
+                    open-floating = true;
+                    
+                    # Optional: Set a specific size so it's not a tiny square
+                    default-column-width.proportion = 0.5;
+                    default-window-height.proportion = 0.4;
                 }
             ];
         };
