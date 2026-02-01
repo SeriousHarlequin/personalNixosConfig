@@ -110,8 +110,8 @@ in
                 "Mod+Shift+Minus".action = set-window-height "-10%";
                 "Mod+Shift+Plus".action = set-window-height "+10%";
 
-                "Mod+BracketLeft".action = consume-or-expel-window-left;
-                "Mod+BracketRight".action = consume-or-expel-window-right;
+                "Mod+8".action = consume-or-expel-window-left;
+                "Mod+9".action = consume-or-expel-window-right;
 
                 "Mod+V".action = toggle-window-floating;
                 "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
@@ -159,6 +159,15 @@ in
                     # Optional: Set a specific size so it's not a tiny square
                     default-column-width.proportion = 0.5;
                     default-window-height.proportion = 0.4;
+                }
+
+                # Nautilus
+                {
+                    matches = [{ app-id = "org.gnome.Nautilus";}];
+                    open-floating = true;
+
+                    default-column-width.proportion = 0.5;
+                    default-window-height.proportion = 0.6;
                 }
             ];
         };
