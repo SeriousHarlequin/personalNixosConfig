@@ -15,32 +15,32 @@
   outputs = { nixpkgs, home-manager, stylix, niri, ... } @ inputs: {
   
     # Laptop
-    nixosConfigurations.nitro5 = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.voyager = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs; }; #allows configuration.nix to access inputs
       modules = [
-        ./hosts/nitro5/configuration.nix
+        ./hosts/voyager/configuration.nix
 	    home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit inputs; };
-          home-manager.users.fabian = ./hosts/nitro5/users/fabian.nix;
+          home-manager.users.fabian = ./hosts/voyager/users/fabian.nix;
 	    }
         stylix.nixosModules.stylix
       ];
     };
     
     # PC
-    nixosConfigurations.pc = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.vanguard = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs; }; #allows configuration.nix to access inputs
       modules = [
-        ./hosts/pc/configuration.nix
+        ./hosts/vanguard/configuration.nix
 	    home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit inputs; };
-          home-manager.users.fabian = ./hosts/pc/users/fabian.nix;
+          home-manager.users.fabian = ./hosts/vanguard/users/fabian.nix;
 	    }
         stylix.nixosModules.stylix
       ];

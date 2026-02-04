@@ -20,7 +20,7 @@ in {
         {
           label = "logout";
           action = "niri msg action quit";
-          text = "Logout";
+          text = "Exit";
           keybind = "e";
         }
         {

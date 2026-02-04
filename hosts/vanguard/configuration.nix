@@ -10,12 +10,12 @@
   myNixos = {
     nvidia = {
       enable = true;
-      hybrid.enable = true;
+      hybrid.enable = false;
     };
 
     gaming = {
       steam.enable = true;
-      steam.gamescope.enable = true;
+      steam.gamescope.enable = false;
     };
 
     software = {
@@ -32,7 +32,7 @@
     desktopEnvironments.enableList = [ "gnome" "niri" ];
   };
   
-  networking.hostName = "nitro5"; # Define your hostname.
+  networking.hostName = "vanguard"; # Define your hostname.
 
   # Add user to virtualization group
   users.groups.libvirtd.members = ["fabian"];
@@ -63,7 +63,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
+  services.libinput.enable = false;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.fabian = {
@@ -89,6 +89,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     thunderbird
+    discord
     pavucontrol
   ];
 
