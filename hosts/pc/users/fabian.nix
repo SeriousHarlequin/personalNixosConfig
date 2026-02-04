@@ -24,5 +24,6 @@
     swayidle.enable = true;
     swaync.enable = true;
     fuzzel.enable = true;
+    wlogout.enable = true;
   };
 }

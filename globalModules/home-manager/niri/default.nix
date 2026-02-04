@@ -57,6 +57,7 @@ in
                 "Mod+N".action = spawn "networkmanager_dmenu";
                 "Mod+M".action.spawn = [ "ghostty" "-e" "btop" ];
                 "Mod+S".action = spawn "pavucontrol";
+                "Mod+BackSpace".action.spawn = [ "wlogout" "-b" "2" ];
 
                 "Mod+Shift+E".action = quit;
                 "Mod+Shift+P".action = power-off-monitors;
