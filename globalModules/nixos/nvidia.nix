@@ -12,17 +12,19 @@ in
     # General Nvidia Configuration
     {
       hardware.graphics.enable = true;
+      hardware.graphics.enable32Bit = true;
 
       services.xserver.videoDrivers = [ "nvidia" ]; # Removed "modesetting" as it's often redundant here
 
       hardware.nvidia = {
         modesetting.enable = true;
-        # powerManagement.enable = true;
+        powerManagement.enable = true;
 
-        open = true; # Changed to true since you have a 1660Ti (Turing)
+        open = false; # Changed to true since you have a 1660Ti (Turing)
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
       };
+      boot.kernelParams = [ "nvidia-drm.modeset=1" ];
     }
 
     # Hybrid/PRIME specific Configuration
