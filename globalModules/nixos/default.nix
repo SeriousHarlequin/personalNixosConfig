@@ -9,9 +9,10 @@
             ./networking.nix
             ./software/cli-tools.nix
             ./software/libreoffice.nix
+            ./software/alvr.nix
+            ./software/virt-manager.nix
             ./updates.nix
             ./desktop-environments.nix
-            ./virt-manager.nix
         ];
 }
 
