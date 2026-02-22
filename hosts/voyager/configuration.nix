@@ -90,6 +90,7 @@
   environment.systemPackages = with pkgs; [
     thunderbird
     pavucontrol
+    kicad-small
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
