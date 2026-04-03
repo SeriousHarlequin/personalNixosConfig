@@ -92,6 +92,7 @@
     thunderbird
     discord
     pavucontrol
+    gutenprint-bin
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

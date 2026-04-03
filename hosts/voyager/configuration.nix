@@ -89,8 +89,10 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     thunderbird
+    discord
     pavucontrol
     kicad-small
+    gutenprint-bin
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
