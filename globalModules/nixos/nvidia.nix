@@ -20,7 +20,7 @@ in
         modesetting.enable = true;
         powerManagement.enable = true;
 
-        open = false; # Changed to true since you have a 1660Ti (Turing)
+        open = false; # 1660Ti (Turing) supports open kernel module, but false is more stable
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
       };

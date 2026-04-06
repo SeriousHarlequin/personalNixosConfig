@@ -7,6 +7,8 @@
             ./gaming.nix
             ./locale.nix
             ./networking.nix
+            ./audio.nix
+            ./display.nix
             ./software/cli-tools.nix
             ./software/libreoffice.nix
             ./software/alvr.nix

@@ -10,41 +10,32 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    claude-code.url = "github:sadjow/claude-code-nix";
   };
 
-  outputs = { nixpkgs, home-manager, stylix, niri, ... } @ inputs: {
-  
-    # Laptop
-    nixosConfigurations.voyager = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs; }; #allows configuration.nix to access inputs
+  outputs = { nixpkgs, home-manager, stylix, niri, claude-code, ... } @ inputs:
+  let
+    mkHost = { host, users ? [ "fabian" ] }: nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
       modules = [
-        ./hosts/voyager/configuration.nix
-	    home-manager.nixosModules.home-manager
+        ./hosts/${host}/configuration.nix
+        home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit inputs; };
-          home-manager.users.fabian = ./hosts/voyager/users/fabian.nix;
-	    }
+          home-manager.users = builtins.listToAttrs (map (user: {
+            name = user;
+            value = ./hosts/${host}/users/${user}.nix;
+          }) users);
+        }
         stylix.nixosModules.stylix
       ];
     };
-    
-    # PC
-    nixosConfigurations.vanguard = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs; }; #allows configuration.nix to access inputs
-      modules = [
-        ./hosts/vanguard/configuration.nix
-	    home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = { inherit inputs; };
-          home-manager.users.fabian = ./hosts/vanguard/users/fabian.nix;
-	    }
-        stylix.nixosModules.stylix
-      ];
-    };
+  in {
+
+    nixosConfigurations.voyager = mkHost { host = "voyager"; };  # Laptop
+    nixosConfigurations.vanguard = mkHost { host = "vanguard"; }; # PC
 
   };
 }
