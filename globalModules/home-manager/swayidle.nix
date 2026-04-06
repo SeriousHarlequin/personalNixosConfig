@@ -27,18 +27,10 @@ in
             ];
             
             # Events that trigger regardless of timer
-            events = [
-                # Lock before the system goes to sleep (suspend/hibernate)
-                {
-                    event = "before-sleep";
-                    command = "${swaylock}";
-                }
-                # Ensure monitors are ready when coming back from lock
-                {
-                    event = "lock";
-                    command = "${swaylock}";
-                }
-            ];
+            events = {
+                before-sleep = "${swaylock}";
+                lock = "${swaylock}";
+            };
         };
 
         # prohibit events when audio is playing
