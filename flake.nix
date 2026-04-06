@@ -18,6 +18,7 @@
     mkHost = { host, users ? [ "fabian" ] }: nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
+        ./globalModules/nixos/default.nix
         ./hosts/${host}/configuration.nix
         home-manager.nixosModules.home-manager
         {

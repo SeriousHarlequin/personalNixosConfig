@@ -2,6 +2,7 @@
 {
     imports = 
         [
+            ./common.nix
             ./stylix.nix
             ./nvidia.nix
             ./gaming.nix
