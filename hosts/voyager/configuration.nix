@@ -43,7 +43,10 @@
 
   environment.systemPackages = with pkgs; [
     thunderbird
+    discord
     pavucontrol
+    kicad-small
+    gutenprint-bin
   ];
 
   system.stateVersion = "25.11";

@@ -30,7 +30,9 @@
     # Formatters
     stylua
     black
-    nixpkgs-fmt
+    nixfmt-rfc-style
+
+    ripgrep # for <leader> fg grep through files
   ];
 
   # Deploy the Neovim config directory

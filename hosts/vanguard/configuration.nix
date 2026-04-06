@@ -49,6 +49,7 @@
     discord
     pavucontrol
     claude-code
+    gutenprint-bin
   ];
 
   system.stateVersion = "25.11";
