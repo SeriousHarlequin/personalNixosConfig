@@ -25,6 +25,9 @@ in
       flags = [
         "--update-input" "nixpkgs"
         "--update-input" "home-manager"
+        "--update-input" "niri"
+        "--update-input" "stylix"
+        "--update-input" "claude-code"
       ];
     };
 
