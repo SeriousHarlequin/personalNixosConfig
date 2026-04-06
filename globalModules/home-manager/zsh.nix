@@ -16,7 +16,7 @@ in
 
       shellAliases = {
         ll = "ls -l";
-        update = "sudo nixos-rebuild switch --flake /home/fabian/dotfiles";
+        update = "sudo nixos-rebuild switch --flake github:SeriousHarlequin/personalNixosConfig";
       };
       history.size = 10000;
 
