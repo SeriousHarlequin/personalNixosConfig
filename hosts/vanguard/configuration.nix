@@ -32,6 +32,7 @@
 
     audio.enable = true;
     display.enable = true;
+    appimage.enable = true;
   };
 
   networking.hostName = "vanguard";

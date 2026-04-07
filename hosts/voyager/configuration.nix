@@ -31,6 +31,7 @@
 
     audio.enable = true;
     display.enable = true;
+    appimage.enable = false;
   };
 
   networking.hostName = "voyager";

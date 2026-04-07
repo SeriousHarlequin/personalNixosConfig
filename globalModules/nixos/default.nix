@@ -16,6 +16,7 @@
             ./software/virt-manager.nix
             ./updates.nix
             ./desktop-environments.nix
+            ./appimage.nix
         ];
 }
 
