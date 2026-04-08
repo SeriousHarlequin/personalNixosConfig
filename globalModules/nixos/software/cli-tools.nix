@@ -13,7 +13,6 @@ in
             neovim
             lf
             git
-            git-credential-manager
             tree
             btop
         ];
