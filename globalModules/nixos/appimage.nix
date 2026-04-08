@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.myNixos.appimage;
 in
@@ -11,6 +11,20 @@ in
     programs.appimage = {
       enable = true;
       binfmt = true;
+      package = pkgs.appimage-run.override {
+        extraPkgs = p: [
+          p.libffi
+          p.libyaml
+          p.SDL2
+          p.SDL2_image
+          p.SDL2_mixer
+          p.SDL2_ttf
+          p.libGL
+          p.openal
+          p.libvorbis
+          p.libogg
+        ];
+      };
     };
   };
 }
