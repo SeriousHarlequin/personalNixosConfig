@@ -1,17 +1,14 @@
 -- TELESCOPE (Fuzzy Finder)
--- Provides the UI for searching files, text, and help tags.
+require("telescope").setup({
+  extensions = { fzf = {} },
+})
+require("telescope").load_extension("fzf")
+
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", builtin.find_files)
 vim.keymap.set("n", "<leader>fg", builtin.live_grep)
 vim.keymap.set("n", "<leader>fb", builtin.buffers)
 vim.keymap.set("n", "<leader>fh", builtin.help_tags)
-
--- TREESITTER (Syntax & Indentation)
--- Provides high-performance syntax highlighting and intelligent indentation.
-require("nvim-treesitter.configs").setup {
-  highlight = { enable = true },
-  indent = { enable = true },
-}
 
 -- LSP CONFIG (Language Intelligence)
 -- Uses the new Neovim 0.11+ native configuration to avoid deprecation warnings.
@@ -26,6 +23,17 @@ for _, lsp in ipairs(servers) do
   -- Start the server for the current buffer
   vim.lsp.enable(lsp)
 end
+
+-- LSP KEYMAPS
+vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+vim.keymap.set("n", "gr", vim.lsp.buf.references)
+vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
+vim.keymap.set("n", "K", vim.lsp.buf.hover)
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
 
 -- MANUAL FORMATTING KEYMAP
 -- Triggers code formatting only when you press Space + f.
@@ -54,6 +62,8 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'buffer' },
+    { name = 'path' },
   })
 })
 
@@ -70,3 +80,23 @@ cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 -- GITSIGNS (Git Integration)
 -- Shows git change indicators in the gutter.
 require('gitsigns').setup()
+
+-- FIDGET (LSP Progress)
+-- Shows LSP loading status in the bottom-right corner.
+require("fidget").setup()
+
+-- OIL (File Explorer)
+-- Edit the filesystem like a buffer. Open with <leader>e.
+require("oil").setup()
+vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>")
+
+-- INDENT BLANKLINE (Visual Indent Guides)
+require("ibl").setup()
+
+-- TODO COMMENTS (Highlight TODOs)
+require("todo-comments").setup()
+
+-- TROUBLE (Diagnostic List)
+-- Better UI for diagnostics, references, quickfix. Toggle with <leader>xx.
+require("trouble").setup()
+vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>")

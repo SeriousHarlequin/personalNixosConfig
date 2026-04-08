@@ -9,13 +9,23 @@
     plugins = with pkgs.vimPlugins; [
       plenary-nvim
       telescope-nvim
+      telescope-fzf-native-nvim
       nvim-treesitter.withAllGrammars
+      nvim-treesitter-textobjects
       nvim-lspconfig
       cmp-nvim-lsp
       nvim-cmp
+      cmp-buffer
+      cmp-path
       luasnip
+      fidget-nvim
       gitsigns-nvim
-      nvim-autopairs # for automatic closing bracket
+      nvim-autopairs
+      oil-nvim
+      indent-blankline-nvim
+      todo-comments-nvim
+      trouble-nvim
+      nvim-web-devicons
     ];
   };
 
