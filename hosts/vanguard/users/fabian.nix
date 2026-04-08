@@ -25,5 +25,6 @@
     swaync.enable = true;
     fuzzel.enable = true;
     wlogout.enable = true;
+    direnv.enable = true;
   };
 }

@@ -13,5 +13,6 @@
     ./fuzzel.nix
     ./wlogout.nix
     ./git.nix
+    ./direnv.nix
   ];
 }
