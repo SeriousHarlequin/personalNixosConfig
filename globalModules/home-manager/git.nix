@@ -12,6 +12,7 @@
       };
       credential.credentialStore = "secretservice";
       pull.rebase = true;
+      init.defaultBranch = "main";
       core.editor = "nvim";
     };
   };
