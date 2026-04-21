@@ -52,6 +52,7 @@
     pavucontrol
     claude-code
     gutenprint-bin
+    prismlauncher
   ];
 
   system.stateVersion = "25.11";
