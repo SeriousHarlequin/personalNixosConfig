@@ -39,6 +39,14 @@ Leader key: `Space`
 | `<leader>d` | Show diagnostic for current line |
 | `<leader>xx` | Toggle Trouble diagnostic list |
 
+## Commenting
+
+| Keymap | Action |
+|--------|--------|
+| `gcc` | Toggle comment on current line |
+| `gc` + motion | Toggle comment on motion (e.g. `gc5j` = 5 lines) |
+| `gc` (visual) | Toggle comment on selection |
+
 ## File Explorer
 
 | Keymap | Action |

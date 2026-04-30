@@ -87,6 +87,23 @@
         "type": "github"
       }
     },
+    "eruption-nix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741185283,
+        "narHash": "sha256-KDffFn2RAiUY3jNfdS1ofbqBDZeVpVgXByI1PhRqfSk=",
+        "owner": "PucklaJ",
+        "repo": "eruption-nix",
+        "rev": "bf98eac32eaba0c7bf04d6a634d6858822af2890",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PucklaJ",
+        "repo": "eruption-nix",
+        "rev": "bf98eac32eaba0c7bf04d6a634d6858822af2890",
+        "type": "github"
+      }
+    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -344,6 +361,7 @@
     "root": {
       "inputs": {
         "claude-code": "claude-code",
+        "eruption-nix": "eruption-nix",
         "home-manager": "home-manager",
         "niri": "niri",
         "nixpkgs": "nixpkgs_3",

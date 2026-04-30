@@ -11,6 +11,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     claude-code.url = "github:sadjow/claude-code-nix";
+    eruption-nix = {
+      url = "github:PucklaJ/eruption-nix/bf98eac32eaba0c7bf04d6a634d6858822af2890";
+      flake = false;
+    };
   };
 
   outputs = { nixpkgs, home-manager, stylix, niri, claude-code, ... } @ inputs:

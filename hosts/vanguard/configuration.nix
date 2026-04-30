@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./eruption.nix
   ];
 
   myNixos = {
@@ -51,6 +52,7 @@
     pavucontrol
     claude-code
     gutenprint-bin
+    prismlauncher
   ];
 
   system.stateVersion = "25.11";
