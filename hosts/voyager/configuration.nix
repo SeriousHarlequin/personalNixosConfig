@@ -31,6 +31,7 @@
 
     audio.enable = true;
     display.enable = true;
+    printing.enable = true;
     appimage.enable = false;
   };
 
@@ -47,7 +48,6 @@
     discord
     pavucontrol
     kicad-small
-    gutenprint-bin
   ];
 
   system.stateVersion = "25.11";

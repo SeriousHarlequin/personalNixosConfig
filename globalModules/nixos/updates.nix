@@ -6,7 +6,6 @@ in
   options.myNixos.autoUpdate = {
     enable = lib.mkEnableOption "Enables auto system updates";
     dates = lib.mkOption {
-      # Use 'either' to support both a single string and a list of strings
       type = with lib.types; either str (listOf str);
       default = "04:00";
       example = "weekly";
@@ -16,28 +15,22 @@ in
       '';
     };
   };
-
   config = lib.mkIf cfg.enable {
     system.autoUpgrade = {
       enable = true;
       dates = cfg.dates;
       flake = "github:SeriousHarlequin/personalNixosConfig#${config.networking.hostName}";
       flags = [
-        "--update-input" "nixpkgs"
-        "--update-input" "home-manager"
-        "--update-input" "niri"
-        "--update-input" "stylix"
-        "--update-input" "claude-code"
+        "--commit-lock-file"
       ];
     };
 
     # deletes all generations older than 30d
     nix.gc = {
       automatic = true;
-      dates = "weekly";
+      dates = "daily";
       options = "--delete-older-than 30d";
     };
-
     # This finds duplicate files in the store and hard-links them to save space
     nix.settings.auto-optimise-store = true;
   };

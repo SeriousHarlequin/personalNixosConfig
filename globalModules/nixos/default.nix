@@ -17,6 +17,7 @@
             ./updates.nix
             ./desktop-environments.nix
             ./appimage.nix
+            ./printing.nix
         ];
 }
 

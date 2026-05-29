@@ -33,6 +33,7 @@
 
     audio.enable = true;
     display.enable = true;
+    printing.enable = true;
     appimage.enable = true;
   };
 
@@ -51,7 +52,6 @@
     discord
     pavucontrol
     claude-code
-    gutenprint-bin
     prismlauncher
   ];
 
