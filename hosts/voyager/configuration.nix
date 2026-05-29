@@ -48,6 +48,8 @@
     discord
     pavucontrol
     kicad-small
+    gutenprint-bin
+    prismlauncher
   ];
 
   system.stateVersion = "25.11";
