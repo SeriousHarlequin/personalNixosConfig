@@ -53,6 +53,7 @@
     pavucontrol
     claude-code
     prismlauncher
+    colmena
   ];
 
   system.stateVersion = "25.11";
