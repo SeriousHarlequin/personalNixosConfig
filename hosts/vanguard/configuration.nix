@@ -53,7 +53,12 @@
     pavucontrol
     claude-code
     prismlauncher
+
+    # For Server Administration
     colmena
+    sops
+    age
+    ssh-to-age
   ];
 
   system.stateVersion = "25.11";
