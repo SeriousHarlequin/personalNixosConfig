@@ -13,6 +13,17 @@ in
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      raopOpenFirewall = true;    # opens UDP 6001-6002 for AirPlay timing/control
+
+      extraConfig.pipewire."10-airplay" = {
+        "context.modules" = [
+          {
+            name = "libpipewire-module-raop-discover";
+            # uncomment + bump if you get dropouts/glitches
+            # args = { "raop.latency.ms" = 500; };
+          }
+        ];
+      };
     };
   };
 }
