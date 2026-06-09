@@ -11,6 +11,5 @@
     ./wlogout.nix
     ./git.nix
     ./direnv.nix
-    ./ags.nix
   ];
 }
