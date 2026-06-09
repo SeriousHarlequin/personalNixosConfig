@@ -22,7 +22,7 @@ export default function Sound() {
         application: App,
         name: "sound",
         layer: Astal.Layer.TOP,
-        anchor: Astal.WindowAnchor.TOP,
+        anchor: Astal.WindowAnchor.BOTTOM,
         exclusivity: Astal.Exclusivity.IGNORE,
         visible: false,
         css: "background-color: transparent;",
@@ -30,15 +30,16 @@ export default function Sound() {
             vertical: true,
             spacing: 8,
             css: `
-                margin-top: 10px;
+                margin-bottom: 20px;
                 padding: 20px 24px;
                 min-width: 260px;
                 background-color: @base00;
                 border-radius: 16px;
+                border: 1px solid alpha(@base04, 0.4);
             `,
             children: [
                 new Widget.Box({
-                    spacing: 12,
+                    spacing: 8,
                     children: [
                         new Widget.Button({
                             css: "font-family: 'JetBrainsMono Nerd Font'; font-size: 20px; color: @base0D; background: none; border: none; padding: 0; min-width: 28px;",
@@ -47,13 +48,20 @@ export default function Sound() {
                             ),
                             onClicked: toggleMute,
                         }),
-                        new Widget.Label({
+                        new Widget.LevelBar({
                             hexpand: true,
+                            valign: Gtk.Align.CENTER,
+                            value: bind(volumeRaw).as(s => {
+                                const m = s.match(/Volume:\s*([\d.]+)/)
+                                return m ? parseFloat(m[1]) : 0
+                            }),
+                        }),
+                        new Widget.Label({
+                            css: "min-width: 38px;",
                             halign: Gtk.Align.END,
-                            css: "font-size: 32px; font-weight: bold; color: @base06;",
                             label: bind(volumeRaw).as(s => {
                                 const m = s.match(/Volume:\s*([\d.]+)/)
-                                return m ? `${Math.round(parseFloat(m[1]) * 100)}%` : "–"
+                                return m ? `${Math.round(parseFloat(m[1]) * 100)}%` : "-"
                             }),
                         }),
                     ],
@@ -65,7 +73,7 @@ export default function Sound() {
                         new Widget.Button({
                             hexpand: true,
                             css: "color: @base06; background-color: @base01; border: none; border-radius: 8px; padding: 6px 0;",
-                            label: "−5%",
+                            label: "-5%",
                             onClicked: () => setVolume(-5),
                         }),
                         new Widget.Button({

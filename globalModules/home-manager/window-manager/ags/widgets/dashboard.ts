@@ -21,17 +21,60 @@ const ram = Variable("0").poll(3000, [
     "/proc/meminfo",
 ])
 
+const uptime = Variable("").poll(10000, [
+    "awk",
+    "{s=$1; d=int(s/86400); h=int((s%86400)/3600); m=int((s%3600)/60); if(d>0) printf \"%dd %dh %dm\",d,h,m; else if(h>0) printf \"%dh %dm\",h,m; else printf \"%dm\",m}",
+    "/proc/uptime",
+])
+
+const lastBuild = Variable("").poll(60000, [
+    "sh", "-c", "date -d @$(stat -c %Y /nix/var/nix/profiles/system) '+%d %b, %H:%M'",
+])
+
+function Separator() {
+    return new Widget.Box({
+        css: "min-height: 1px; background-color: alpha(@base04, 0.3); margin: 4px 0;",
+    })
+}
+
 function StatRow(icon: string, value: Variable<string>) {
     return new Widget.Box({
+        spacing: 8,
         children: [
             new Widget.Label({
-                css: "font-family: 'JetBrainsMono Nerd Font'; font-size: 16px; color: @base0D; min-width: 32px;",
+                css: "font-family: 'JetBrainsMono Nerd Font'; font-size: 16px; color: @base0D; min-width: 28px;",
                 label: icon,
+            }),
+            new Widget.LevelBar({
+                hexpand: true,
+                valign: Gtk.Align.CENTER,
+                value: bind(value).as(v => parseInt(v) / 100),
+            }),
+            new Widget.Label({
+                css: "min-width: 38px;",
+                halign: Gtk.Align.END,
+                label: bind(value).as(v => `${v}%`),
+            }),
+        ],
+    })
+}
+
+function InfoRow(icon: string, label: string, value: Variable<string>) {
+    return new Widget.Box({
+        spacing: 8,
+        children: [
+            new Widget.Label({
+                css: "font-family: 'JetBrainsMono Nerd Font'; font-size: 16px; color: @base0D; min-width: 28px;",
+                label: icon,
+            }),
+            new Widget.Label({
+                css: "font-size: 13px; color: alpha(@base06, 0.6);",
+                label: label,
             }),
             new Widget.Label({
                 hexpand: true,
                 halign: Gtk.Align.END,
-                label: bind(value).as(v => `${v}%`),
+                label: bind(value),
             }),
         ],
     })
@@ -55,6 +98,7 @@ export default function Dashboard() {
                 min-width: 300px;
                 background-color: @base00;
                 border-radius: 16px;
+                border: 1px solid alpha(@base04, 0.4);
             `,
             children: [
                 new Widget.Label({
@@ -67,11 +111,12 @@ export default function Dashboard() {
                     css: "font-size: 13px; color: alpha(@base06, 0.6);",
                     label: bind(date),
                 }),
-                new Widget.Box({
-                    css: "min-height: 1px; background-color: alpha(@base04, 0.3); margin: 4px 0;",
-                }),
+                Separator(),
                 StatRow("", cpu),
                 StatRow("", ram),
+                Separator(),
+                InfoRow("", "Uptime", uptime),
+                InfoRow("", "Last Build", lastBuild),
             ],
         }),
     })

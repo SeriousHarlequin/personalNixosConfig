@@ -11,6 +11,26 @@ let
         @define-color base06 #${c.base06};
         @define-color base08 #${c.base08};
         @define-color base0D #${c.base0D};
+
+        levelbar trough {
+            background-color: @base01;
+            border-radius: 4px;
+            min-height: 6px;
+            border: none;
+            padding: 0;
+        }
+        levelbar block.filled {
+            background-color: @base0D;
+            border-radius: 4px;
+            min-height: 6px;
+            border: none;
+            padding: 0;
+        }
+        levelbar block.empty {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+        }
     `;
   '';
 
