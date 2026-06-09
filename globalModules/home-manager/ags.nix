@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.myHome.ags;
+  c = config.lib.stylix.colors;
 
   appTs = ''
     import { App, Astal, Gtk, Widget } from "astal/gtk3"
@@ -50,6 +51,7 @@ let
             anchor: Astal.WindowAnchor.TOP,
             exclusivity: Astal.Exclusivity.IGNORE,
             visible: false,
+            css: "background-color: transparent;",
             child: new Widget.Box({
                 vertical: true,
                 spacing: 12,
@@ -58,6 +60,7 @@ let
                     padding: 24px;
                     min-width: 300px;
                     background-color: @base00;
+                    border-radius: 16px;
                 `,
                 children: [
                     new Widget.Label({
@@ -81,6 +84,12 @@ let
     }
 
     App.start({
+        css: `
+            @define-color base00 #${c.base00};
+            @define-color base04 #${c.base04};
+            @define-color base06 #${c.base06};
+            @define-color base0D #${c.base0D};
+        `,
         main: Dashboard,
     })
   '';
