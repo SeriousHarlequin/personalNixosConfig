@@ -40,6 +40,7 @@ let
     cp ${colorsTs} $out/colors.ts
     cp ${./widgets/dashboard.ts} $out/widgets/dashboard.ts
     cp ${./widgets/sound.ts} $out/widgets/sound.ts
+    cp ${./widgets/notifications.ts} $out/widgets/notifications.ts
   '';
 in
 {
@@ -67,8 +68,8 @@ in
     };
 
     programs.niri.settings.binds = {
-      "Mod+B".action.spawn = [ "${pkgs.ags}/bin/ags" "toggle" "dashboard" ];
-      "Mod+A".action.spawn = [ "${pkgs.ags}/bin/ags" "toggle" "sound" ];
+      "Mod+B".action.spawn = [ "${pkgs.ags}/bin/ags" "request" "toggle-dashboard" ];
+      "Mod+A".action.spawn = [ "${pkgs.ags}/bin/ags" "request" "toggle-sound" ];
     };
   };
 }
