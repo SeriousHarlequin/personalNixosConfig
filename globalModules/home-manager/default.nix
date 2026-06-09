@@ -5,11 +5,8 @@
     ./ghostty.nix
     ./zoxide.nix
     ./zsh.nix
-    ./niri/default.nix
+    ./window-manager
     ./waybar.nix
-    ./swaylock.nix
-    ./swayidle.nix
-    ./swaync.nix
     ./fuzzel.nix
     ./wlogout.nix
     ./git.nix
