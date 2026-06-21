@@ -53,6 +53,7 @@
     pavucontrol
     claude-code
     prismlauncher
+    qbittorrent
 
     # For Server Administration
     colmena
@@ -60,7 +61,6 @@
     age
     ssh-to-age
   ];
-  services.qbittorrent.enable = true;
 
   system.stateVersion = "25.11";
 }
