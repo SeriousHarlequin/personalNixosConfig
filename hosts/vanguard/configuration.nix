@@ -60,6 +60,7 @@
     age
     ssh-to-age
   ];
+  services.qbittorrent.enable = true;
 
   system.stateVersion = "25.11";
 }
