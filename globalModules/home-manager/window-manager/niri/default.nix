@@ -1,6 +1,68 @@
 { config, lib, pkgs, inputs, ...}:
 let
     cfg = config.myHome.niri;
+
+    # awww (formerly swww) — pkgs.swww is now an alias for pkgs.awww, and the
+    # binaries are awww / awww-daemon.
+    awww = "${pkgs.awww}/bin/awww";
+    awwwDaemon = "${pkgs.awww}/bin/awww-daemon";
+
+    # Graphical wallpaper picker: fuzzel (dmenu mode) over a wallpapers dir,
+    # then set the choice with awww. Runtime-only — no flake edits to swap.
+    # Each entry gets an inline PNG thumbnail (cached) so wallpapers preview
+    # themselves in the menu. Thumbnails are PNG because this fuzzel is built
+    # with +png +svg but no JPEG.
+    wallpaperPicker = pkgs.writeShellApplication {
+        name = "wallpaper-picker";
+        runtimeInputs = with pkgs; [ awww fuzzel imagemagick findutils gnused coreutils libnotify ];
+        text = ''
+            # Optional arg: WALLPAPER_DIR (defaults to ~/Pictures/wallpapers).
+            walldir="''${1:-$HOME/Pictures/wallpapers}"
+            thumbdir="''${XDG_CACHE_HOME:-$HOME/.cache}/wallpaper-thumbnails"
+
+            if [ ! -d "$walldir" ]; then
+                notify-send "Wallpaper picker" "Directory not found: $walldir"
+                exit 1
+            fi
+
+            mkdir -p "$thumbdir"
+
+            # Pick the target: "All monitors" (default) or a single output from
+            # `awww query`. "All monitors" maps to no --outputs (every screen).
+            # Skip the prompt entirely when only one monitor is connected.
+            outargs=()
+            mapfile -t outputs < <(awww query | sed -nE 's/^:? *([^:]+):.*/\1/p')
+            if [ "''${#outputs[@]}" -gt 1 ]; then
+                target="$( { echo 'All monitors'; printf '%s\n' "''${outputs[@]}"; } \
+                    | fuzzel --dmenu --prompt 'monitor  ')"
+                [ -z "$target" ] && exit 0
+                [ "$target" != "All monitors" ] && outargs=(--outputs "$target")
+            fi
+
+            # Emit fuzzel dmenu lines: "<name>\0icon\x1f<thumbnail>".
+            # Generate/refresh a cached thumbnail per wallpaper as needed.
+            menu() {
+                find -L "$walldir" -type f \
+                    \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \
+                       -o -iname '*.gif' -o -iname '*.webp' -o -iname '*.bmp' \) \
+                    -printf '%P\n' | sort | while IFS= read -r name; do
+                    src="$walldir/$name"
+                    thumb="$thumbdir/$(printf '%s' "$src" | sha1sum | cut -c1-16).png"
+                    if [ ! -f "$thumb" ] || [ "$src" -nt "$thumb" ]; then
+                        magick "$src" -thumbnail '160x100^' -gravity center \
+                            -extent 160x100 "$thumb" 2>/dev/null || continue
+                    fi
+                    printf '%s\0icon\x1f%s\n' "$name" "$thumb"
+                done
+            }
+
+            selection="$(menu | fuzzel --dmenu --prompt '󰸉  ')"
+
+            [ -z "$selection" ] && exit 0
+
+            awww img "''${outargs[@]}" "$walldir/$selection" -t random
+        '';
+    };
 in
 {
     imports = [ inputs.niri.homeModules.niri ];
@@ -26,7 +88,10 @@ in
             };
 
             spawn-at-startup = [
-                { command = [ "${pkgs.swaybg}/bin/swaybg" "-i" "${config.stylix.image}" "-m" "fill" ]; }
+                # Start the awww daemon, wait for it to come up, then restore the
+                # last wallpaper set with `awww img`. Only if nothing was restored
+                # (first boot, empty cache) seed the stylix default so it's not blank.
+                { command = [ "sh" "-c" "${awwwDaemon} & for _ in $(seq 1 50); do ${awww} query >/dev/null 2>&1 && break; sleep 0.1; done; ${awww} restore 2>/dev/null; ${awww} query 2>/dev/null | grep -q 'image:' || ${awww} img -t none ${config.stylix.image}" ]; }
             ];
 
             # 2. Layout & Styling
@@ -51,6 +116,7 @@ in
                 "Mod+Shift+7".action = show-hotkey-overlay;
                 "Mod+T".action = spawn "ghostty";
                 "Mod+D".action = spawn "fuzzel";
+                "Mod+Shift+W".action = spawn "${wallpaperPicker}/bin/wallpaper-picker";
                 "Mod+W".action = spawn "firefox";
                 "Mod+Q".action = close-window;
                 "Mod+E".action = spawn "nautilus";

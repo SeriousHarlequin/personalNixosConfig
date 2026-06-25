@@ -15,7 +15,7 @@
 
     environment.systemPackages = with pkgs; [
         gnomeExtensions.user-themes
-        swaybg
+        awww
     ];
 
 }
