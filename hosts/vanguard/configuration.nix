@@ -21,7 +21,8 @@
       cli-tools.enable = true;
       libreoffice.enable = true;
       virt-manager.enable = true;
-      alvr.enable = true;
+      alvr.enable = false;
+      wivrn.enable = true;
     };
 
     autoUpdate = {

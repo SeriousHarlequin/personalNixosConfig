@@ -14,6 +14,7 @@
             ./software/libreoffice.nix
             ./software/alvr.nix
             ./software/virt-manager.nix
+            ./software/wivrn.nix
             ./updates.nix
             ./desktop-environments.nix
             ./appimage.nix
