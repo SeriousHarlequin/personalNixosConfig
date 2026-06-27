@@ -55,6 +55,7 @@
     claude-code
     prismlauncher
     qbittorrent
+    obsidian
 
     # For Server Administration
     colmena

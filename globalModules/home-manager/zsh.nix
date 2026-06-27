@@ -25,8 +25,18 @@ in
         plugins = [
           "git"
           "web-search"
+          "zsh-syntax-highlighting"
+          "history-substring-search"
+          "colored-man-pages"
+          "colorize"
+          "dirhistory"
+          "eza"
         ];
         theme = "bira";
+        customPkgs = with pkgs; [
+          nix-zsh-completions
+          eza
+        ];
       };
     };
 
