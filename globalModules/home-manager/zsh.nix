@@ -8,24 +8,32 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    home.packages = [ pkgs.eza ];
+
     programs.zsh = {
       enable = true;
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
-
       shellAliases = {
         ll = "ls -l";
         update = "sudo nixos-rebuild switch --flake github:SeriousHarlequin/personalNixosConfig";
       };
       history.size = 10000;
 
+      plugins = [
+        {
+          name = "nix-zsh-completions";
+          src = pkgs.nix-zsh-completions;
+          file = "share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh";
+        }
+      ];
+
       oh-my-zsh = {
         enable = true;
         plugins = [
           "git"
           "web-search"
-          "zsh-syntax-highlighting"
           "history-substring-search"
           "colored-man-pages"
           "colorize"
@@ -33,10 +41,6 @@ in
           "eza"
         ];
         theme = "bira";
-        customPkgs = with pkgs; [
-          nix-zsh-completions
-          eza
-        ];
       };
     };
 
