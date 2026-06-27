@@ -56,6 +56,7 @@
     prismlauncher
     qbittorrent
     obsidian
+    nextcloud-client
 
     # For Server Administration
     colmena
