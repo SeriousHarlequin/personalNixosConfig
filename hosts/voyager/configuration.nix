@@ -50,6 +50,8 @@
     kicad-small
     gutenprint-bin
     prismlauncher
+    obsidian
+    nextcloud-client
   ];
 
   system.stateVersion = "25.11";
