@@ -50,6 +50,7 @@
     kicad-small
     gutenprint-bin
     prismlauncher
+    vlc-bin
   ];
 
   system.stateVersion = "25.11";

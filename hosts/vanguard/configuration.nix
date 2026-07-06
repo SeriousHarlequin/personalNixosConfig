@@ -57,6 +57,7 @@
     qbittorrent
     obsidian
     nextcloud-client
+    vlc-bin
 
     # For Server Administration
     colmena
