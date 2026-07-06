@@ -50,7 +50,7 @@
     kicad-small
     gutenprint-bin
     prismlauncher
-    vlc-bin
+    vlc
     obsidian
     nextcloud-client
   ];
