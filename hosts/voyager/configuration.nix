@@ -51,6 +51,8 @@
     gutenprint-bin
     prismlauncher
     vlc-bin
+    obsidian
+    nextcloud-client
   ];
 
   system.stateVersion = "25.11";
