@@ -15,6 +15,7 @@ in
             git
             tree
             btop
+            unzip
         ];
     };
 }
