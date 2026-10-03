@@ -23,6 +23,7 @@
       virt-manager.enable = true;
       alvr.enable = false;
       wivrn.enable = true;
+      java-dev-tools.enable = true;
     };
 
     autoUpdate = {

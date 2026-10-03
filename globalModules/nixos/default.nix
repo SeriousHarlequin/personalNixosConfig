@@ -15,6 +15,7 @@
             ./software/alvr.nix
             ./software/virt-manager.nix
             ./software/wivrn.nix
+            ./software/java-dev-tools.nix
             ./updates.nix
             ./desktop-environments.nix
             ./appimage.nix
